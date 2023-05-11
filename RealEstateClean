@@ -1,0 +1,38 @@
+SELECT *
+FROM realtordata;
+
+----I want to remove previous sold date column:
+
+ALTER TABLE realtordata
+DROP COLUMN prev_sold_date;
+
+--I want to remove all rows containing a NULL value:
+
+DELETE FROM realtordata
+WHERE status IS NULL
+AND bed IS NULL
+AND bath IS NULL
+AND acre_lot IS NULL
+AND city IS NULL
+AND state IS NULL
+AND zip_code IS NULL
+AND house_size IS NULL
+AND price IS NULL;
+
+SELECT * 
+FROM realtordata
+ORDER BY state;
+
+----I want to remove Virgin Islands and Puerto Rico data 
+
+DELETE FROM realtordata
+WHERE state IN ('Puerto Rico', 'Virgin Islands');
+
+----I want to round acre_lot to the second decimal place:
+
+UPDATE realtordata
+SET acre_lot = ROUND(acre_lot, 2);
+
+SELECT * 
+FROM realtordata
+ORDER BY state, city;
